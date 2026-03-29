@@ -1,17 +1,25 @@
 import random
 from models import Email, Observation, Action
+from tasks import get_task 
 
 class EmailEnv:
-    def __init__(self):
+    def __init__(self, task_name="easy"):
+        self.task_name = task_name  # ← THIS LINE (the missing brain cell)
         self.emails = []
         self.processed = []
         self.done = False
 
     def reset(self):
+        # self.emails = [
+        #     Email(subject="Win money!!!", body="Click now", label="spam"),
+        #     Email(subject="Project deadline", body="Due tomorrow", label="important"),
+        #     Email(subject="Lunch?", body="Shall we?", label="normal"),
+        # ]
+        raw_emails = get_task(self.task_name)
+    
         self.emails = [
-            Email(subject="Win money!!!", body="Click now", label="spam"),
-            Email(subject="Project deadline", body="Due tomorrow", label="important"),
-            Email(subject="Lunch?", body="Shall we?", label="normal"),
+            Email(subject=e["subject"], body="", label=e["label"])
+            for e in raw_emails
         ]
         self.processed = []
         self.done = False

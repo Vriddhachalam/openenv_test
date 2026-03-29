@@ -1,20 +1,26 @@
-def easy_task():
-    return [
-        ("Win money!!!", "spam"),
-        ("Meeting today", "important"),
-    ]
+# tasks.py
 
-def medium_task():
-    return [
-        ("Free vacation", "spam"),
-        ("Client update", "important"),
-        ("Random chat", "normal"),
-    ]
+def get_task(task_name):
+    if task_name == "easy":
+        return [
+            {"subject": "Win money!!!", "label": "spam"},
+            {"subject": "Meeting today", "label": "important"},
+        ]
 
-def hard_task():
-    return [
-        ("Urgent: account issue", "important"),
-        ("You won lottery", "spam"),
-        ("Follow up", "normal"),
-        ("Security alert", "important"),
-    ]
+    elif task_name == "medium":
+        return [
+            {"subject": "Free vacation", "label": "spam"},
+            {"subject": "Client update", "label": "important"},
+            {"subject": "Random chat", "label": "normal"},
+        ]
+
+    elif task_name == "hard":
+        return [
+            {"subject": "Urgent: account issue", "label": "important"},
+            {"subject": "You won lottery", "label": "spam"},
+            {"subject": "Follow up", "label": "normal"},
+            {"subject": "Security alert", "label": "important"},
+        ]
+
+    else:
+        raise ValueError("Unknown task")
