@@ -1,0 +1,10 @@
+name: email-triage-env
+description: Simulates email classification task
+observation_space:
+  type: inbox + processed emails
+action_space:
+  type: mark_spam | mark_important | skip
+reward:
+  +1 correct
+  -1 incorrect
+  0 skip
